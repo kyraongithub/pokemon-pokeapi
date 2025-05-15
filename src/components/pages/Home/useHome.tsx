@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useState } from 'react';
-// import { PokemonListResponse } from '../types/pokemon';
 import { getPokemons } from './helper';
+import { PokemonListResponse } from '@/interfaces/pokemon';
 
 const useHome = () => {
   const [offset, setOffset] = useState<number>(0);
@@ -12,7 +12,7 @@ const useHome = () => {
     return response;
   }, [offset, limit]);
 
-  const { data, isLoading, isError, error } = useQuery<any>({
+  const { data, isLoading, isError, error } = useQuery<PokemonListResponse>({
     queryKey: ['pokemons', offset],
     queryFn: getPokemonsList,
   });
